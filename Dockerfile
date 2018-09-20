@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM centos:7.4.1708
 MAINTAINER xjd <xing.jiudong@trans-cosmos.com.cn>
 
 ENV MAJOR_VERSION=8u181 \
@@ -7,16 +7,10 @@ ENV MAJOR_VERSION=8u181 \
 ENV JDK_VERSION=${MAJOR_VERSION}-${MINOR_VERSION}
 ENV JDK_DOWNLOAD_URL=http://download.oracle.com/otn-pub/java/jdk/${JDK_VERSION}/${RANDOM_NUM}/jdk-${MAJOR_VERSION}-linux-x64.tar.gz
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    TERM=linux \
-    INITRD=No \
-    LANG=C.UTF-8  
-
 RUN set -x && \
-  apt-get update -qq && \
-  apt-get install -y apt-utils curl && \
-  apt-get install -y --no-install-recommends ca-certificates wget unzip && \
-  rm -rf /var/lib/apt/lists/*
+    yum update y && \
+    yum install -y curl ca-certificates wget unzip && \
+    yum clean all
 
 # Install Oracle JDK 
 RUN mkdir /opt/java && \
