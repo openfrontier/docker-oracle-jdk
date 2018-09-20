@@ -1,8 +1,6 @@
 FROM debian:stretch
 MAINTAINER xjd <xing.jiudong@trans-cosmos.com.cn>
 
-USER root
-
 ENV DEBIAN_FRONTEND=noninteractive \
     TERM=linux \
     INITRD=No \
@@ -21,16 +19,12 @@ RUN mkdir /opt/java && cd /tmp && \
     rm -f jdk-8u181-linux-x64.tar.gz && \
     ln -s /opt/java/jdk* /opt/java/jdk && \
     ln -s /opt/java/jdk /opt/java/jvm && \
-    ln -s /opt/java/jdk1.8.0_181/ /opt/java/default && \
-    chown -R root:root /opt/java/jdk1.8.0_181/
+    ln -s /opt/java/jdk1.8.0_181/ /opt/java/default
 
 # Define commonly used JAVA_HOME variable
 # Add /opt/java and jdk on PATH variable
 ENV JAVA_HOME=/opt/java/jdk \
     PATH=${PATH}:/opt/java/jdk/bin:/opt/java
-
-# Define default workdir
-WORKDIR /root
 
 # Define default command.
 CMD [ "/bin/bash", "-l"]
