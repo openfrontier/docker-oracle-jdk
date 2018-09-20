@@ -8,7 +8,7 @@ ENV JDK_VERSION=${MAJOR_VERSION}-${MINOR_VERSION}
 ENV JDK_DOWNLOAD_URL=http://download.oracle.com/otn-pub/java/jdk/${JDK_VERSION}/${RANDOM_NUM}/jdk-${MAJOR_VERSION}-linux-x64.tar.gz
 
 RUN set -x && \
-    yum update y && \
+    yum update -y && \
     yum install -y curl ca-certificates wget unzip && \
     yum clean all
 
